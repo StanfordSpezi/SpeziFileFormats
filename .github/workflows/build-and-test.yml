@@ -16,14 +16,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  packageios:
+  ios:
     name: Build and Test Swift Package iOS
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
       scheme: SpeziFileFormats-Package
       resultBundle: SpeziFileFormats-iOS.xcresult
       artifactname: SpeziFileFormats-iOS.xcresult
-  packagewatchos:
+  watchos:
     name: Build and Test Swift Package watchOS
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
@@ -31,7 +31,7 @@ jobs:
       destination: 'platform=watchOS Simulator,name=Apple Watch Series 9 (45mm)'
       resultBundle: SpeziFileFormats-watchOS.xcresult
       artifactname: SpeziFileFormats-watchOS.xcresult
-  packagevisionos:
+  visionos:
     name: Build and Test Swift Package visionOS
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
@@ -39,7 +39,7 @@ jobs:
       destination: 'platform=visionOS Simulator,name=Apple Vision Pro'
       resultBundle: SpeziFileFormats-visionOS.xcresult
       artifactname: SpeziFileFormats-visionOS.xcresult
-  packagetvos:
+  tvos:
     name: Build and Test Swift Package tvOS
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
@@ -48,7 +48,7 @@ jobs:
       resultBundle: SpeziFileFormats-tvOS.xcresult
       destination: 'platform=tvOS Simulator,name=Apple TV 4K (3rd generation)'
       artifactname: SpeziFileFormats-tvOS.xcresult
-  packagemacos:
+  macos:
     name: Build and Test Swift Package macOS
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
@@ -70,7 +70,7 @@ jobs:
       actions: read
   uploadcoveragereport:
     name: Upload Coverage Report
-    needs: [packageios, packagewatchos, packagevisionos, packagetvos, packagemacos, ios, ipados, watchos, visionos, tvos]
+    needs: [ios, watchos, visionos, tvos, macos]
     uses: StanfordBDHG/.github/.github/workflows/create-and-upload-coverage-report.yml@v2
     with:
       coveragereports: SpeziFileFormats-iOS.xcresult SpeziFileFormats-watchOS.xcresult SpeziFileFormats-visionOS.xcresult SpeziFileFormats-tvOS.xcresult SpeziFileFormats-macOS.xcresult TestApp-iOS.xcresult TestApp-iPadOS.xcresult TestApp-watchOS.xcresult TestApp-visionOS.xcresult TestApp-tvOS.xcresult TestAppMacOS.xcresult
