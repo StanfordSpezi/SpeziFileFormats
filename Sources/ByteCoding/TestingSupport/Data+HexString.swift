@@ -9,7 +9,6 @@
 import Foundation
 
 
-// TODO: XCTTestPackage!
 extension Data {
     /// Create `Data` from a hex string.
     ///

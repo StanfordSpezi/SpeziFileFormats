@@ -9,7 +9,6 @@
 import Foundation
 import NIO
 
-// TODO: docs and stuff!
 
 extension Float32: ByteCodable {
     /// Decodes a float from its byte representation.

@@ -17,7 +17,8 @@ let package = Package(
         .iOS(.v15),
         .watchOS(.v7),
         .visionOS(.v1),
-        .macOS(.v12)
+        .macOS(.v12),
+        .tvOS(.v15)
     ],
     products: [
         .library(name: "ByteCoding", targets: ["ByteCoding"]),

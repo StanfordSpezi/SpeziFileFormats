@@ -18,14 +18,14 @@ on:
 jobs:
   ios:
     name: Build and Test Swift Package iOS
-    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
+    uses: StanfordSpezi/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
       scheme: SpeziFileFormats-Package
       resultBundle: SpeziFileFormats-iOS.xcresult
       artifactname: SpeziFileFormats-iOS.xcresult
   watchos:
     name: Build and Test Swift Package watchOS
-    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
+    uses: StanfordSpezi/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
       scheme: SpeziFileFormats-Package
       destination: 'platform=watchOS Simulator,name=Apple Watch Series 9 (45mm)'
@@ -33,7 +33,7 @@ jobs:
       artifactname: SpeziFileFormats-watchOS.xcresult
   visionos:
     name: Build and Test Swift Package visionOS
-    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
+    uses: StanfordSpezi/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
       scheme: SpeziFileFormats-Package
       destination: 'platform=visionOS Simulator,name=Apple Vision Pro'
@@ -41,7 +41,7 @@ jobs:
       artifactname: SpeziFileFormats-visionOS.xcresult
   tvos:
     name: Build and Test Swift Package tvOS
-    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
+    uses: StanfordSpezi/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
       runsonlabels: '["macOS", "self-hosted"]'
       scheme: SpeziFileFormats-Package
@@ -50,7 +50,7 @@ jobs:
       artifactname: SpeziFileFormats-tvOS.xcresult
   macos:
     name: Build and Test Swift Package macOS
-    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
+    uses: StanfordSpezi/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
       runsonlabels: '["macOS", "self-hosted"]'
       xcodeversion: latest
@@ -60,7 +60,7 @@ jobs:
       artifactname: SpeziFileFormats-macOS.xcresult
   codeql:
     name: CodeQL
-    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
+    uses: StanfordSpezi/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
       codeql: true
       test: false
