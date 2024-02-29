@@ -10,7 +10,6 @@ import Foundation
 import NIOCore
 import NIOFoundationCompat
 
-// TODO: documentation target!
 
 /// A type that is decodable from a byte representation.
 ///
