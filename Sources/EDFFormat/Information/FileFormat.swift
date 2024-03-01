@@ -22,6 +22,9 @@ public enum FileFormat {
 }
 
 
+extension FileFormat: Sendable {}
+
+
 extension FileFormat: ByteEncodable {
     public func encode(to byteBuffer: inout ByteBuffer, preferredEndianness endianness: Endianness) {
         switch self {
@@ -29,7 +32,7 @@ extension FileFormat: ByteEncodable {
             byteBuffer.writeEDFAscii(".", length: 8)
         case .bdf:
             byteBuffer.writeInteger(UInt8.max)
-            byteBuffer.writeString("BIOMSEMI")
+            byteBuffer.writeEDFAscii("BIOSEMI", length: 7)
         }
     }
 }

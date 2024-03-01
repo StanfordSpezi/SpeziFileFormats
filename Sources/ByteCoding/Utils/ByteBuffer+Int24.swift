@@ -10,7 +10,7 @@ import Foundation
 import NIOCore
 
 
-// TODO: docs and unit tests
+// TODO: docs (add to article)
 
 extension ByteBuffer {
     @inlinable
@@ -23,7 +23,7 @@ extension ByteBuffer {
 
         // if its larger than the largest positive number, we want to make sure that all upper 8 bits are flipped to one.
         if bitPattern > 0x7FFFFF { // (2 ^ 23) - 1
-            bitPattern |= 0xFF000000 // TODO: that doesn't work?
+            bitPattern |= 0xFF000000
         }
 
         // I love Swift for that! We can just reinterpret the 32UInt bit pattern into a Int32!
@@ -86,10 +86,10 @@ extension ByteBuffer {
 
         var bitPattern = UInt32(bitPattern: integer)
 
-         // we verified above that this integer fits into the range, so now just set to most significant byte to zero (2s complement reprensetation of Int32)
-         bitPattern &= 0xFF_FF_FF
+        // we verified above that this integer fits into the range, so now just set to most significant byte to zero (2s complement representation of Int32)
+        bitPattern &= 0xFF_FF_FF
 
-         return self.setUInt24(bitPattern, at: index, endianness: endianness)
+        return self.setUInt24(bitPattern, at: index, endianness: endianness)
     }
 
     @inlinable
@@ -106,7 +106,7 @@ extension ByteBuffer {
     @inlinable
     @discardableResult
     public mutating func setUInt24(_ integer: UInt32, at index: Int, endianness: Endianness = .big) -> Int {
-        precondition(integer & 0xFF_FF_FF == integer, "integer value does not fit into 24 bit usinged integer")
+        precondition(integer & 0xFF_FF_FF == integer, "integer value does not fit into 24 bit un-singed integer")
         switch endianness {
         case .little:
             return setInteger(UInt8(integer & 0xFF), at: index, endianness: .little)

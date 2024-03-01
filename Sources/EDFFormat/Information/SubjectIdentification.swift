@@ -7,8 +7,8 @@
 //
 
 import ByteCoding
-import NIO
 import Foundation
+import NIO
 
 
 /// The structured representation of the `Local Subject Identification` field specified by EDF+.
@@ -48,6 +48,22 @@ public enum SubjectIdentification {
 }
 
 
+extension PatientInformation: Sendable {}
+extension SubjectIdentification: Sendable {}
+
+
+extension SubjectIdentification {
+    func verifyAsciiInput() throws {
+        switch self {
+        case let .unstructured(subject):
+            try verifyAsciiInput(subject, maxLength: 80, for: "subjectIdentification")
+        case let .structured(subject):
+            try verifyAsciiInput(subject.edfString, maxLength: 80, for: "subjectIdentification")
+        }
+    }
+}
+
+
 extension PatientInformation: EDFRepresentable {
     private static var birthdayFormatter: DateFormatter {
         var formatter = DateFormatter()
@@ -78,9 +94,9 @@ extension SubjectIdentification: ByteEncodable {
     public func encode(to byteBuffer: inout ByteBuffer, preferredEndianness endianness: Endianness) {
         switch self {
         case let .unstructured(subject):
-            byteBuffer.writeEDFAscii(subject, length: 80)
+            byteBuffer.writeEDFAsciiTrimming(subject, length: 80)
         case let .structured(subject):
-            byteBuffer.writeEDFAscii(subject.edfString, length: 80)
+            byteBuffer.writeEDFAsciiTrimming(subject.edfString, length: 80)
         }
     }
 }

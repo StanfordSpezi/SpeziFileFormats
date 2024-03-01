@@ -24,6 +24,10 @@ public struct SignalLabel {
     }
 }
 
+
+extension SignalLabel: Sendable {}
+
+
 extension SignalLabel {
     public static func distance(location: String? = nil, prefix: DimensionPrefix = .none) -> SignalLabel {
         SignalLabel(type: .distance, location: location, prefix: prefix, dimension: "m")

@@ -18,3 +18,15 @@ public struct FileInformation {
     /// The duration in seconds of a single data record.
     public let recordDuration: Int
 }
+
+
+extension FileInformation: Sendable {}
+
+
+extension FileInformation {
+    func verifyAsciiInput() throws {
+        try subject.verifyAsciiInput()
+        try recording.verifyAsciiInput()
+        try verifyAsciiInput(fileInformation.recordDuration, maxLength: 8, for: "recordDuration")
+    }
+}

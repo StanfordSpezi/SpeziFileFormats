@@ -41,6 +41,22 @@ public enum RecordingIdentification {
 }
 
 
+extension RecordingInformation: Sendable {}
+extension RecordingIdentification: Sendable {}
+
+
+extension RecordingIdentification {
+    func verifyAsciiInput() throws {
+        switch self {
+        case let .unstructured(recording, _):
+            try verifyAsciiInput(recording, maxLength: 80, for: "recordingIdentification")
+        case let .structured(recording):
+            try verifyAsciiInput(recording.edfString, maxLength: 80, for: "recordingIdentification")
+        }
+    }
+}
+
+
 extension RecordingInformation: EDFRepresentable {
     private static var longYearFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -65,9 +81,9 @@ extension RecordingIdentification: ByteEncodable {
     public func encode(to byteBuffer: inout ByteBuffer, preferredEndianness endianness: Endianness) {
         switch self {
         case let .unstructured(recording, _):
-            byteBuffer.writeEDFAscii(recording, length: 80)
+            byteBuffer.writeEDFAsciiTrimming(recording, length: 80)
         case let .structured(recording):
-            byteBuffer.writeEDFAscii(recording.edfString, length: 80)
+            byteBuffer.writeEDFAsciiTrimming(recording.edfString, length: 80)
         }
     }
 }

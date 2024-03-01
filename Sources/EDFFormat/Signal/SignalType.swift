@@ -35,3 +35,6 @@ public enum SignalType: String {
     case sound = "Sound"
     case events = "Event"
 }
+
+
+extension SignalType: Sendable {}
