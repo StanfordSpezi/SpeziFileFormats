@@ -92,9 +92,29 @@ public final class GenericFileWriter<S: Sample>: @unchecked Sendable {
 
         try fileHandle.seek(toOffset: writerIndex)
 
+        if record.channels.count != channelCount { // == signals.count
+            throw EDFEncodingError.invalidChannelCount(expected: channelCount, received: record.channels.count)
+        }
+
+        var totalSampleCount = 0 // count to reserve capacity later on
+        for index in signals.indices {
+            let signal = signals[index]
+            let channel = record.channels[index]
+
+            if channel.samples.count != signal.sampleCount {
+                throw EDFEncodingError.invalidSampleCount(channel: signal.label, expected: signal.sampleCount, received: channel.samples.count)
+            }
+            totalSampleCount += signal.sampleCount
+        }
+
         var recordBuffer = ByteBuffer()
-        // TODO: reserve capacity!
-        record.encode(to: &recordBuffer, preferredEndianness: .little) // TODO: specify preferred everywhere!
+        switch format {
+        case .edf:
+            recordBuffer.reserveCapacity(16 * totalSampleCount)
+        case .bdf:
+            recordBuffer.reserveCapacity(24 * totalSampleCount)
+        }
+        record.encode(to: &recordBuffer, preferredEndianness: .little)
 
         let recordData = recordBuffer.getData(at: 0, length: recordBuffer.readableBytes) ?? .init()
         try fileHandle.write(contentsOf: recordData)

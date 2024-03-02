@@ -15,7 +15,7 @@ extension ByteBuffer {
     }
 
     mutating func writeEDFAscii(_ value: String, length: Int) {
-        // TODO: assert everything is ascii!
+        precondition(value.isASCII, "Input string is not ascii: \"\(value)\"")
         precondition(value.count <= length, "Tried to encode string that was longer than \(length) bytes: \"\(value)\"")
         let padding = String(repeating: " ", count: max(0, length - value.count))
 
