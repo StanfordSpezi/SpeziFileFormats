@@ -11,7 +11,7 @@ import NIO
 
 extension ByteBuffer {
     mutating func writeEDFAsciiTrimming(_ value: String, length: Int) {
-        self.writeEDFAscii(value.prefix(length), length: length)
+        self.writeEDFAscii(String(value.prefix(length)), length: length)
     }
 
     mutating func writeEDFAscii(_ value: String, length: Int) {
@@ -26,7 +26,7 @@ extension ByteBuffer {
     }
 
     mutating func writeEDFAsciiTrimming<Value: BinaryInteger>(_ value: Value, length: Int) {
-        writeEDFAsciiTrimming(value.description(length), length: length)
+        writeEDFAsciiTrimming(value.description, length: length)
     }
 
     mutating func writeEDFAscii<Value: BinaryInteger>(_ value: Value, length: Int) {

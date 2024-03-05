@@ -52,14 +52,16 @@ public final class GenericFileWriter<S: Sample>: @unchecked Sendable {
         self.fileInformation = fileInformation
         self.dataFormat = dataFormat
         self.signals = signals
+
+        // TODO: file does not exists?
         self.fileHandle = try FileHandle(forWritingTo: url)
 
         try verifyAsciiInput(channelCount, maxLength: 4, for: "channelCount")
         try verifyAsciiInput(headerLength, maxLength: 8, for: "headerLength")
 
-        try fileInformation.verifyAsciiInput()
+        try fileInformation.verifyAsciiInputs()
         for signal in signals {
-            try signal.verifyAsciiInput()
+            try signal.verifyAsciiInputs()
         }
     }
 

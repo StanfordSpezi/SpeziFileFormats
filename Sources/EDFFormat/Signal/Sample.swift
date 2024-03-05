@@ -63,7 +63,7 @@ extension BDFSample: ByteCodable {
 
 extension EDFSample: ByteCodable {
     public init?(from byteBuffer: inout ByteBuffer, preferredEndianness endianness: Endianness) {
-        guard let value = UInt16(from: &byteBuffer, preferredEndianness: endianness) else {
+        guard let value = Int16(from: &byteBuffer, preferredEndianness: endianness) else {
             return nil
         }
         self.init(value)

@@ -54,6 +54,13 @@ let package = Package(
                 .target(name: "ByteCoding"),
                 .target(name: "XCTByteCoding")
             ]
+        ),
+        .testTarget(
+            name: "EDFFormatTests",
+            dependencies: [
+                .target(name: "ByteCoding"),
+                .target(name: "EDFFormat")
+            ]
         )
     ]
 )

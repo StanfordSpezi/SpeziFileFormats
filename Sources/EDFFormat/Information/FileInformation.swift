@@ -24,9 +24,9 @@ extension FileInformation: Sendable {}
 
 
 extension FileInformation {
-    func verifyAsciiInput() throws {
-        try subject.verifyAsciiInput()
-        try recording.verifyAsciiInput()
-        try verifyAsciiInput(fileInformation.recordDuration, maxLength: 8, for: "recordDuration")
+    func verifyAsciiInputs() throws {
+        try subject.verifyAsciiInputs()
+        try recording.verifyAsciiInputs()
+        try verifyAsciiInput(recordDuration, maxLength: 8, for: "recordDuration")
     }
 }

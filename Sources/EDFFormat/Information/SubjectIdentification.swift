@@ -53,7 +53,7 @@ extension SubjectIdentification: Sendable {}
 
 
 extension SubjectIdentification {
-    func verifyAsciiInput() throws {
+    func verifyAsciiInputs() throws {
         switch self {
         case let .unstructured(subject):
             try verifyAsciiInput(subject, maxLength: 80, for: "subjectIdentification")

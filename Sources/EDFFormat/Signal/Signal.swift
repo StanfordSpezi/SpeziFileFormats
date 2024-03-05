@@ -63,7 +63,7 @@ extension Signal: Sendable {}
 
 
 extension Signal {
-    func verifyAsciiInput() throws {
+    func verifyAsciiInputs() throws {
         try verifyAsciiInput(label.rawValue, maxLength: 16, for: "signal.label")
         try verifyAsciiInput(transducerType, maxLength: 80, for: "signal.transducerType")
         try verifyAsciiInput(label.dimension, maxLength: 8, for: "signal.dimension")

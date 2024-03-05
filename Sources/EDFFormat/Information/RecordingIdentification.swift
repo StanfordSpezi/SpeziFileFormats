@@ -46,7 +46,7 @@ extension RecordingIdentification: Sendable {}
 
 
 extension RecordingIdentification {
-    func verifyAsciiInput() throws {
+    func verifyAsciiInputs() throws {
         switch self {
         case let .unstructured(recording, _):
             try verifyAsciiInput(recording, maxLength: 80, for: "recordingIdentification")
@@ -60,7 +60,7 @@ extension RecordingIdentification {
 extension RecordingInformation: EDFRepresentable {
     private static var longYearFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MMM-yyyyy"
+        formatter.dateFormat = "dd-MMM-yyyy"
         return formatter
     }
 
