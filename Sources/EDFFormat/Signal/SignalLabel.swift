@@ -25,7 +25,7 @@ public struct SignalLabel {
 }
 
 
-extension SignalLabel: Sendable {}
+extension SignalLabel: Sendable, Equatable {}
 
 
 extension SignalLabel {

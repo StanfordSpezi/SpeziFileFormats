@@ -52,7 +52,7 @@ extension Date {
 extension FileInformation {
     static func testFile(start startDate: Date, birthdate: Date) -> FileInformation {
         FileInformation(
-            subject: .structured(PatientInformation( // TODO: test anonymsous!
+            subject: .structured(PatientInformation(
                 code: "P-1",
                 sex: .male,
                 birthdate: birthdate,
@@ -71,7 +71,7 @@ extension FileInformation {
 
 
 extension Signal {
-    static var testEEGSignal: Signal {
+    static var testAF8EEGSignal: Signal {
         Signal(
             label: .eeg(location: .af8, prefix: .micro),
             transducerType: "test-transducer",
@@ -82,6 +82,20 @@ extension Signal {
             digitalMinimum: -250,
             digitalMaximum: 250,
             reserved: "This is reserved."
+        )
+    }
+
+    static var testAF7EEGSignal: Signal {
+        Signal(
+            label: .eeg(location: .af7, prefix: .micro),
+            transducerType: "test-transducer2",
+            prefiltering: "test-perfiltering2",
+            sampleCount: 5,
+            physicalMinimum: -202,
+            physicalMaximum: 202,
+            digitalMinimum: -252,
+            digitalMaximum: 252,
+            reserved: "This is reserved2."
         )
     }
 }

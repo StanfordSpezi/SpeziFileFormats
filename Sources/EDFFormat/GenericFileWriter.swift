@@ -92,6 +92,10 @@ public final class GenericFileWriter<S: Sample>: @unchecked Sendable {
             lock.unlock()
         }
 
+        if writerIndex == 0 {
+            throw EDFEncodingError.headerNotWritten
+        }
+
         try fileHandle.seek(toOffset: writerIndex)
 
         if record.channels.count != channelCount { // == signals.count
@@ -122,7 +126,12 @@ public final class GenericFileWriter<S: Sample>: @unchecked Sendable {
         try fileHandle.write(contentsOf: recordData)
 
         writerIndex += UInt64(recordData.count)
+
+        if self.dataRecordsCount < 0 {
+            self.dataRecordsCount = 0
+        }
         self.dataRecordsCount += 1
+        
         try verifyAsciiInput(dataRecordsCount, maxLength: 8, for: "dataRecordsCount")
 
         try updateRecordsCount()

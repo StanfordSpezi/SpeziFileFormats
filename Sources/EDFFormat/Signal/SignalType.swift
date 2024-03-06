@@ -37,4 +37,4 @@ public enum SignalType: String {
 }
 
 
-extension SignalType: Sendable {}
+extension SignalType: Sendable, Equatable {}

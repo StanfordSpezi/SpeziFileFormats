@@ -14,7 +14,7 @@ public struct DataRecord<S: Sample> {
     public let channels: [Channel<S>]
 
 
-    public init(channels: [EDFFormat.Channel<S>]) {
+    public init(channels: [Channel<S>]) {
         self.channels = channels
     }
 }
