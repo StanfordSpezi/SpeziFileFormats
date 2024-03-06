@@ -55,6 +55,7 @@ public enum SubjectIdentification {
 }
 
 
+extension PatientInformation.Sex: Sendable {}
 extension PatientInformation: Sendable {}
 extension SubjectIdentification: Sendable {}
 
@@ -73,7 +74,7 @@ extension SubjectIdentification {
 
 extension PatientInformation: EDFRepresentable {
     private static var birthdayFormatter: DateFormatter {
-        var formatter = DateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "dd-MMM-yyyy"
         return formatter
     }

@@ -7,7 +7,7 @@
 //
 
 
-/// The description of a signal.
+/// The label of a signal.
 ///
 /// For more information on structured signal descriptions refer to the
 /// [EDF List of signals](https://www.edfplus.info/specs/edftexts.html#signals).
@@ -271,12 +271,14 @@ extension SignalLabel {
 
 extension SignalLabel {
     /// Create a custom signal label.
+    /// 
     /// - Parameters:
     ///   - type: The signal type.
     ///   - location: The signal location.
     ///   - prefix: The dimension prefix.
     ///   - dimension: The signal dimension.
-    public static func custom(type: SignalType, location: String? = nil, prefix: DimensionPrefix = .none, dimension: String? = nil) {
+    /// - Returns: The signal label.
+    public static func custom(type: SignalType, location: String? = nil, prefix: DimensionPrefix = .none, dimension: String? = nil) -> SignalLabel {
         SignalLabel(type: type, location: location, prefix: prefix, dimension: dimension)
     }
 }

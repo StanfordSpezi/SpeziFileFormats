@@ -17,7 +17,7 @@ public enum EDFEncodingError: Error {
     case invalidChannelCount(expected: Int, received: Int)
     /// The provided ``Channel`` has an unexpected count of samples.
     case invalidSampleCount(channel: SignalLabel, expected: Int, received: Int)
-    /// The header was not written yet. Call ``EDFFileWriter/writeHeader()`` beforehand.
+    /// The header was not written yet. Call ``GenericFileWriter/writeHeader()`` beforehand.
     case headerNotWritten
 }
 

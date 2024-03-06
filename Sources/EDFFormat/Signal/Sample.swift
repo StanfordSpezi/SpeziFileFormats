@@ -42,9 +42,13 @@ public struct EDFSample {
 }
 
 
+/// A recorded sample.
 public protocol Sample: ByteCodable, Sendable {
+    /// The sample value type (e.g., `Int16`).
     associatedtype Value: BinaryInteger
 
+
+    /// The value of the sample.
     var value: Value { get }
 }
 
