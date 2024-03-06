@@ -10,9 +10,14 @@ import ByteCoding
 import NIO
 
 
+/// Recorded data of a channel.
 public struct Channel<S: Sample> {
+    /// The list of samples.
     public let samples: [S]
 
+
+    /// Create a new channel data
+    /// - Parameter samples: The list of samples.
     public init(samples: [S]) {
         self.samples = samples
     }

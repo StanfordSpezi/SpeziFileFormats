@@ -10,9 +10,13 @@ import Foundation
 import NIOCore
 
 
-// TODO: docs (add to article)
-
 extension ByteBuffer {
+    /// Get 24-bit signed integer at a given index without moving the reader index.
+    ///
+    /// - Parameters:
+    ///   - index: The starting index of the integer in the `ByteBuffer`.
+    ///   - endianness: The endianness of the integer in the `ByteBuffer`.
+    /// - Returns: A 24-bit signed integer put into a `Int32` type or `nil` if the bytes are not readable.
     @inlinable
     public func getInt24(at index: Int, endianness: Endianness = .big) -> Int32? {
         guard var bitPattern = getUInt24(at: index, endianness: endianness) else {
@@ -30,6 +34,10 @@ extension ByteBuffer {
         return Int32(bitPattern: bitPattern)
     }
 
+    /// Read 24-bit signed integer and move the reader index forward accordingly.
+    ///
+    /// - Parameter endianness: The endianness of the integer in the `ByteBuffer`.
+    /// - Returns: A 24-bit signed integer put into a `Int32` type or `nil` if the bytes are not readable.
     @inlinable
     public mutating func readInt24(endianness: Endianness = .big) -> Int32? {
         guard let value = getInt24(at: self.readerIndex, endianness: endianness) else {
@@ -43,6 +51,12 @@ extension ByteBuffer {
 
 // see https://github.com/apple/swift-nio-extras/pull/114
 extension ByteBuffer {
+    /// Get 24-bit unsigned integer at a given index without moving the reader index.
+    ///
+    /// - Parameters:
+    ///   - index: The starting index of the integer in the `ByteBuffer`.
+    ///   - endianness: The endianness of the integer in the `ByteBuffer`.
+    /// - Returns: A 24-bit unsigned integer put into a `UInt32` type or `nil` if the bytes are not readable.
     @inlinable
     public func getUInt24(at index: Int, endianness: Endianness = .big) -> UInt32? {
         let mostSignificant: UInt16
@@ -62,6 +76,10 @@ extension ByteBuffer {
         return (UInt32(mostSignificant) << 8) &+ UInt32(leastSignificant)
     }
 
+    /// Read 24-bit unsigned integer and move the reader index forward accordingly.
+    ///
+    /// - Parameter endianness: The endianness of the integer in the `ByteBuffer`.
+    /// - Returns: A 24-bit unsigned integer put into a `UInt32` type or `nil` if the bytes are not readable.
     @inlinable
     public mutating func readUInt24(endianness: Endianness = .big) -> UInt32? {
         guard let integer = getUInt24(at: self.readerIndex, endianness: endianness) else {
@@ -74,11 +92,21 @@ extension ByteBuffer {
 
 
 extension ByteBuffer {
-    @usableFromInline
-    static let maxInt24 = Int32(bitPattern: 0x007FFFFF)
-    @usableFromInline
-    static let minInt24 = Int32(bitPattern: 0xFF800000)
+    /// The maximum 24-bit integer in a `Int32` type.
+    @usableFromInline static let maxInt24 = Int32(bitPattern: 0x007FFFFF)
+    /// The minimum 24-bit integer in a `Int32` type.
+    @usableFromInline static let minInt24 = Int32(bitPattern: 0xFF800000)
 
+    /// Set 24-bit signed integer at a given index without moving the writer index.
+    ///
+    /// Note that while the method accepts an `Int32`, the value range is restricted to an `Int24`.
+    /// Passing a larger value will result in a runtime crash.
+    ///
+    /// - Parameters:
+    ///   - integer: The integer to write.
+    ///   - index: The index of the first byte to write.
+    ///   - endianness: The endianness to use for writing.
+    /// - Returns: The number of bytes written.
     @inlinable
     @discardableResult
     public mutating func setInt24(_ integer: Int32, at index: Int, endianness: Endianness = .big) -> Int {
@@ -92,6 +120,15 @@ extension ByteBuffer {
         return self.setUInt24(bitPattern, at: index, endianness: endianness)
     }
 
+    /// Write 24-bit signed integer and move the writer index forward accordingly.
+    ///
+    /// Note that while the method accepts an `Int32`, the value range is restricted to an `Int24`.
+    /// Passing a larger value will result in a runtime crash.
+    ///
+    /// - Parameters:
+    ///   - integer: The integer to write.
+    ///   - endianness: The endianness to use for writing.
+    /// - Returns: The number of bytes written.
     @inlinable
     @discardableResult
     public mutating func writeInt24(_ integer: Int32, endianness: Endianness = .big) -> Int {
@@ -103,6 +140,16 @@ extension ByteBuffer {
 
 
 extension ByteBuffer {
+    /// Set 24-bit unsigned integer at a given index without moving the writer index.
+    ///
+    /// Note that while the method accepts an  `UInt32`, the value range is restricted to an `UInt24`.
+    /// Passing a larger value will result in a runtime crash.
+    ///
+    /// - Parameters:
+    ///   - integer: The integer to write.
+    ///   - index: The index of the first byte to write.
+    ///   - endianness: The endianness to use for writing.
+    /// - Returns: The number of bytes written.
     @inlinable
     @discardableResult
     public mutating func setUInt24(_ integer: UInt32, at index: Int, endianness: Endianness = .big) -> Int {
@@ -117,6 +164,15 @@ extension ByteBuffer {
         }
     }
 
+    /// Write 24-bit unsigned integer and move the writer index forward accordingly.
+    ///
+    /// Note that while the method accepts an `UInt32`, the value range is restricted to an `UInt24`.
+    /// Passing a larger value will result in a runtime crash.
+    ///
+    /// - Parameters:
+    ///   - integer: The integer to write.
+    ///   - endianness: The endianness to use for writing.
+    /// - Returns: The number of bytes written.
     @inlinable
     @discardableResult
     public mutating func writeUInt24(_ integer: UInt32, endianness: Endianness = .big) -> Int {

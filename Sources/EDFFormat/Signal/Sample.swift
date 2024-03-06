@@ -17,6 +17,9 @@ public struct BDFSample {
     /// The 24-bit sample value.
     public let value: Int32
 
+
+    /// Create a new sample.
+    /// - Parameter value: The 24-bit sample value.
     public init(_ value: Int32) {
         self.value = value
     }
@@ -30,6 +33,9 @@ public struct EDFSample {
     /// The 16-bit sample value.
     public let value: Int16
 
+
+    /// Create a new sample.
+    /// - Parameter value: The 16-bit sample value.
     public init(_ value: Int16) {
         self.value = value
     }

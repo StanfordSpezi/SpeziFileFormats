@@ -7,6 +7,7 @@
 //
 
 
+/// The location of an EEG electrode.
 public enum EEGLocation: String {
     /// Pg1
     case pg1 = "Pg1"

@@ -7,6 +7,9 @@
 //
 
 
+/// Dimension prefixes for SI units.
+///
+/// For more information refer to [EDF+ Dimension Prefixes](https://www.edfplus.info/specs/edftexts.html#prefixes_electrodenames).
 public enum DimensionPrefix: String {
     /// Decimal power of 24
     case yotta = "Y"

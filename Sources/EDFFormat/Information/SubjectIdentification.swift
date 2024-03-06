@@ -31,6 +31,12 @@ public struct PatientInformation {
     public let name: String?
 
 
+    /// Create a new patient information.
+    /// - Parameters:
+    ///   - code: The code by which the patient is known in the hospital administration.
+    ///   - sex: The sex of the patient.
+    ///   - birthdate: The birthdate of the patient.
+    ///   - name: The name of the patient without spaces.
     public init(code: String? = nil, sex: Sex? = nil, birthdate: Date? = nil, name: String? = nil) {
         self.code = code
         self.sex = sex
@@ -40,6 +46,7 @@ public struct PatientInformation {
 }
 
 
+/// Identify a subject.
 public enum SubjectIdentification {
     /// An unstructured representation of the subject as a `String`. Maximum length is 80 bytes.
     case unstructured(_ subject: String)

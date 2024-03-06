@@ -7,6 +7,7 @@
 //
 
 
+/// The data record format of an EDF file.
 public enum EDFRecordsFormat {
     /// EDF file with continuous recording: `EDF+C`.
     case contiguousRecording

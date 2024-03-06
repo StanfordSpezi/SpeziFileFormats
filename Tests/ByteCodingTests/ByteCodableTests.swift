@@ -111,7 +111,8 @@ final class ByteCodableTests: XCTestCase {
         let data = try XCTUnwrap(Data(hex: "0x0000FF"))
         var buffer = ByteBuffer(data: data)
 
-        let uint = try XCTUnwrap(buffer.getUInt24(at: 0, endianness: .little))
+        let uint = try XCTUnwrap(buffer.readUInt24(endianness: .little))
+        buffer.moveReaderIndex(to: 0)
         let int = try XCTUnwrap(buffer.readInt24(endianness: .little))
 
         XCTAssertEqual(uint, 0xFF0000)

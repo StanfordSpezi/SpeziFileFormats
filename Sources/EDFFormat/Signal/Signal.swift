@@ -11,7 +11,13 @@ import Foundation
 import NIO
 
 
+/// A description of a signal.
+///
+/// This describes the signal of a single channel.
 public struct Signal {
+    /// The label of the signal.
+    ///
+    /// Provides a description of the signal.
     public let label: SignalLabel
 
 
@@ -22,20 +28,40 @@ public struct Signal {
     /// For example, "active electrode` or "respiration belt".
     public let transducerType: String
     /// Description of the applied filtering.
+    ///
+    /// 80 Byte string describing the transducer description.
+    ///
+    /// For example, "HP:0,16; LP:500" (HP for high-pass and LP for low-pass).
     public let prefiltering: String
 
+    /// The amount of samples each data record contains for this signal.
     public var sampleCount: Int
 
+    /// Physical minimum in units of physical dimension.
     public let physicalMinimum: Int
+    /// Physical maximum in units of physical dimension.
     public let physicalMaximum: Int
+    /// The digital minimum.
     public let digitalMinimum: Int
+    /// The digital maximum.
     public let digitalMaximum: Int
 
     /// 32 bytes of reserved area.
     public let reserved: String
 
 
-    public init(
+    /// Create a new signal description.
+    /// - Parameters:
+    ///   - label: The label of the signal.
+    ///   - transducerType: The transducer type.
+    ///   - prefiltering: Description of the applied filtering.
+    ///   - sampleCount: The amount of samples each data record contains for this signal.
+    ///   - physicalMinimum: Physical minimum in units of physical dimension.
+    ///   - physicalMaximum: Physical maximum in units of physical dimension.
+    ///   - digitalMinimum: The digital minimum.
+    ///   - digitalMaximum: The digital maximum.
+    ///   - reserved: 32 bytes of reserved area.
+    public init( // swiftlint:disable:this function_default_parameter_at_end
         label: SignalLabel,
         transducerType: String? = nil,
         prefiltering: String? = nil,

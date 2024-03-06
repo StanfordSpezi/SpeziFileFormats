@@ -11,6 +11,7 @@ import Foundation
 import NIO
 
 
+/// The structured representation of the `Local Recording Identification` field specified by EDF+.
 public struct RecordingInformation {
     /// The start data and time of the recording.
     public let startDate: Date
@@ -20,9 +21,24 @@ public struct RecordingInformation {
     public let investigatorCode: String?
     /// A code specifying the used equipment.
     public let equipmentCode: String?
+
+
+    /// Create a new recording information.
+    /// - Parameters:
+    ///   - startDate: The start date of the recording.
+    ///   - code: The hospital administration code of the investigation.
+    ///   - investigatorCode: A code specifying the responsible investigator or technician.
+    ///   - equipmentCode: A code specifying the used equipment.
+    public init(startDate: Date, code: String? = nil, investigatorCode: String? = nil, equipmentCode: String? = nil) {
+        self.startDate = startDate
+        self.code = code
+        self.investigatorCode = investigatorCode
+        self.equipmentCode = equipmentCode
+    }
 }
 
 
+/// Identify a recording.
 public enum RecordingIdentification {
     /// An unstructured representation of the recording information as a `String`. Maximum length is 80 bytes.
     case unstructured(_ recording: String, startDate: Date)

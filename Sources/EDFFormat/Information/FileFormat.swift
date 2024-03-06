@@ -10,6 +10,7 @@ import ByteCoding
 import NIO
 
 
+/// The file format.
 public enum FileFormat {
     /// European Data Format
     ///

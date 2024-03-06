@@ -12,13 +12,106 @@ import NIO
 import NIOFoundationCompat
 
 
+/// A EDF file writer.
+///
+/// A file writer for a ``EDFSample``.
+///
+/// Below is a short code example on how to use the file writer class.
+///
+/// ```swift
+/// let url = URL(filePath: "/your/file/path.edf") // make sure the file exists
+///
+/// let file: FileInformation = // ...
+/// let signals: [Signal] = [
+///     // define your signal descriptions ...
+/// ]
+///
+/// let writer = try EDFFileWriter(url: url, information: file, signals: signals)
+///
+/// // make sure to write the file header once ...
+/// try writer.writeHeader()
+///
+/// // continuously add your data records ...
+/// let record = DataRecord(channels: [
+///     // add your `Channel` data with `EDFSample`s
+/// ])
+/// try writer.addRecord(record)
+///
+/// // ...
+///
+/// // close file once finished
+/// try writer.close()
+/// ```
 public typealias EDFFileWriter = GenericFileWriter<EDFSample>
 
 
+/// A BDF file writer.
+///
+/// A file writer for a ``BDFSample``.
+///
+/// Below is a short code example on how to use the file writer class.
+///
+/// ```swift
+/// let url = URL(filePath: "/your/file/path.bdf") // make sure the file exists
+///
+/// let file: FileInformation = // ...
+/// let signals: [Signal] = [
+///     // define your signal descriptions ...
+/// ]
+///
+/// let writer = try BDFFileWriter(url: url, information: file, signals: signals)
+///
+/// // make sure to write the file header once ...
+/// try writer.writeHeader()
+///
+/// // continuously add your data records ...
+/// let record = DataRecord(channels: [
+///     // add your `Channel` data with `EDFSample`s
+/// ])
+/// try writer.addRecord(record)
+///
+/// // ...
+///
+/// // close file once finished
+/// try writer.close()
+/// ```
 public typealias BDFFileWriter = GenericFileWriter<BDFSample>
 
 
-public final class GenericFileWriter<S: Sample>: @unchecked Sendable {
+/// A EDF/BDF file writer for a given `Sample` type.
+///
+/// A file writer for a generic ``Sample`` type.
+///
+/// - Tip: Use the ``EDFFileWriter`` or ``BDFFileWriter`` typealias for the respective sample types
+///     to generate EDF/EDF+ or BDF/BDF+ files.
+///
+/// Below is a short code example on how to use the file writer class.
+///
+/// ```swift
+/// let url = URL(filePath: "/your/file/path.edf") // make sure the file exists
+///
+/// let file: FileInformation = // ...
+/// let signals: [Signal] = [
+///     // define your signal descriptions ...
+/// ]
+///
+/// let writer = try GenericFileWriter<EDFSample>(url: url, information: file, signals: signals)
+///
+/// // make sure to write the file header once ...
+/// try writer.writeHeader()
+///
+/// // continuously add your data records ...
+/// let record = DataRecord(channels: [
+///     // add your `Channel` data
+/// ])
+/// try writer.addRecord(record)
+///
+/// // ...
+///
+/// // close file once finished
+/// try writer.close()
+/// ```
+public final class GenericFileWriter<S: Sample> {
     private static var dataRecordsCountOffset: UInt64 {
         8 + 80 + 80 + 8 + 8 + 8 + 44
     }
@@ -28,7 +121,7 @@ public final class GenericFileWriter<S: Sample>: @unchecked Sendable {
     /// File information
     public let fileInformation: FileInformation
     /// The format of the file records.
-    private let dataFormat: FileRecordsFormat // TODO: make this readable for public interface?
+    private let dataFormat: FileRecordsFormat
     /// Array of signal descriptions.
     public let signals: [Signal]
 
@@ -39,6 +132,7 @@ public final class GenericFileWriter<S: Sample>: @unchecked Sendable {
     private var didClose = false
 
 
+    /// The channel count this file contains.
     public var channelCount: Int {
         signals.count
     }
@@ -53,7 +147,6 @@ public final class GenericFileWriter<S: Sample>: @unchecked Sendable {
         self.dataFormat = dataFormat
         self.signals = signals
 
-        // TODO: file does not exists?
         self.fileHandle = try FileHandle(forWritingTo: url)
 
         try verifyAsciiInput(channelCount, maxLength: 4, for: "channelCount")
@@ -66,6 +159,8 @@ public final class GenericFileWriter<S: Sample>: @unchecked Sendable {
     }
 
 
+    /// Write the file header to disk.
+    /// - Throws: Throws if file access fails.
     public func writeHeader() throws {
         lock.lock()
         defer {
@@ -86,6 +181,9 @@ public final class GenericFileWriter<S: Sample>: @unchecked Sendable {
         writerIndex += UInt64(headerData.count)
     }
 
+    /// Append new data record to the file.
+    /// - Parameter record: The set of sample data grouped by their channel.
+    /// - Throws: Throws if file access fails or invalid data record was provided (e.g., invalid channel count or sample count).
     public func addRecord(_ record: DataRecord<S>) throws {
         lock.lock()
         defer {
@@ -149,6 +247,8 @@ public final class GenericFileWriter<S: Sample>: @unchecked Sendable {
         try fileHandle.write(contentsOf: countData)
     }
 
+    /// Finish writing file by closing the file handle.
+    /// - Throws: Throws if file interaction fails.
     public func close() throws {
         lock.lock()
         defer {
@@ -173,6 +273,9 @@ public final class GenericFileWriter<S: Sample>: @unchecked Sendable {
         try? close()
     }
 }
+
+
+extension GenericFileWriter: @unchecked Sendable {}
 
 
 extension GenericFileWriter {
@@ -226,6 +329,13 @@ extension GenericFileWriter {
 
 
 extension GenericFileWriter where S == EDFSample {
+    /// Create a new EDF file writer.
+    /// - Parameters:
+    ///   - url: The url to the file to write. Note that the file must be created already.
+    ///   - format: The data records format.
+    ///   - information: The file information.
+    ///   - signals: The array of signal descriptions.
+    /// - Throws: Throws if FileHandle creation fails.
     public convenience init(url: URL, format: EDFRecordsFormat = .custom(), information: FileInformation, signals: [Signal]) throws {
         // swiftlint:disable:previous function_default_parameter_at_end
         try self.init(url: url, format: .edf, fileInformation: information, dataFormat: .init(from: format), signals: signals)
@@ -234,6 +344,13 @@ extension GenericFileWriter where S == EDFSample {
 
 
 extension GenericFileWriter where S == BDFSample {
+    /// Create a new BDF file writer.
+    /// - Parameters:
+    ///   - url:  The url to the file to write. Note that the file must be created already.
+    ///   - format: The file format.
+    ///   - information: The file information.
+    ///   - signals: The array of signal descriptions.
+    /// - Throws: Throws if FileHandle creation fails.
     public convenience init(url: URL, format: FileFormat = .bdf, information: FileInformation, signals: [Signal]) throws {
         // swiftlint:disable:previous function_default_parameter_at_end
 

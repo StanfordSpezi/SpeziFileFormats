@@ -13,7 +13,7 @@ import NIO
 import XCTest
 
 
-final class EDFEncodingTests: XCTestCase {
+final class EDFEncodingTests: XCTestCase { // swiftlint:disable:this type_body_length
     func testEDFPlusHeaderEncoding() throws {
         let url: URL = try .createTmpFile(name: "edf-test.edf")
         let startDate: Date = try .createDate(year: 2024, month: 3, day: 4, hour: 18, minute: 51, second: 10)
