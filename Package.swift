@@ -14,14 +14,15 @@ import PackageDescription
 let package = Package(
     name: "SpeziFileFormats",
     platforms: [
-        .iOS(.v15),
-        .watchOS(.v7),
+        .iOS(.v16),
+        .watchOS(.v9),
         .visionOS(.v1),
-        .macOS(.v12),
-        .tvOS(.v15)
+        .macOS(.v13),
+        .tvOS(.v16)
     ],
     products: [
         .library(name: "ByteCoding", targets: ["ByteCoding"]),
+        .library(name: "EDFFormat", targets: ["EDFFormat"]),
         .library(name: "XCTByteCoding", targets: ["XCTByteCoding"])
     ],
     dependencies: [
@@ -36,6 +37,12 @@ let package = Package(
             ]
         ),
         .target(
+            name: "EDFFormat",
+            dependencies: [
+                .target(name: "ByteCoding")
+            ]
+        ),
+        .target(
             name: "XCTByteCoding",
             dependencies: [
                 .target(name: "ByteCoding")
@@ -46,6 +53,13 @@ let package = Package(
             dependencies: [
                 .target(name: "ByteCoding"),
                 .target(name: "XCTByteCoding")
+            ]
+        ),
+        .testTarget(
+            name: "EDFFormatTests",
+            dependencies: [
+                .target(name: "ByteCoding"),
+                .target(name: "EDFFormat")
             ]
         )
     ]
