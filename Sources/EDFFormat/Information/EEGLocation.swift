@@ -182,7 +182,9 @@ public struct EEGLocation {
     /// Iz
     public static let iz = EEGLocation(rawValue: "Iz") // swiftlint:disable:this identifier_name
 
-    let rawValue: String
+
+    /// The string reprensetation of the eeg location.
+    public let rawValue: String
 
     init(rawValue: String) {
         self.rawValue = rawValue
