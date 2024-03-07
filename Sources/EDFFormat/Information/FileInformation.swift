@@ -17,6 +17,18 @@ public struct FileInformation {
     public let recording: RecordingIdentification
     /// The duration in seconds of a single data record.
     public let recordDuration: Int
+
+
+    /// Create a new file information.
+    /// - Parameters:
+    ///   - subject: The local subject identification for the recording.
+    ///   - recording: The local recording identification.
+    ///   - recordDuration: The duration in seconds of a single data record.
+    public init(subject: SubjectIdentification, recording: RecordingIdentification, recordDuration: Int) {
+        self.subject = subject
+        self.recording = recording
+        self.recordDuration = recordDuration
+    }
 }
 
 
