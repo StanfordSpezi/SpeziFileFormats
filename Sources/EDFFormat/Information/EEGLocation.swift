@@ -82,17 +82,17 @@ public struct EEGLocation {
     public static let a1 = EEGLocation(rawValue: "A1") // swiftlint:disable:this identifier_name
 
     /// T9
-    public static let t9 = EEGLocation(rawValue: "T9")
+    public static let t9 = EEGLocation(rawValue: "T9") // swiftlint:disable:this identifier_name
     /// T7
-    public static let t7 = EEGLocation(rawValue: "T7")
+    public static let t7 = EEGLocation(rawValue: "T7") // swiftlint:disable:this identifier_name
     /// C5
-    public static let c5 = EEGLocation(rawValue: "C5")
+    public static let c5 = EEGLocation(rawValue: "C5") // swiftlint:disable:this identifier_name
     /// C3
-    public static let c3 = EEGLocation(rawValue: "C3")
+    public static let c3 = EEGLocation(rawValue: "C3") // swiftlint:disable:this identifier_name
     /// C1
-    public static let c1 = EEGLocation(rawValue: "C1")
+    public static let c1 = EEGLocation(rawValue: "C1") // swiftlint:disable:this identifier_name
     /// Cz
-    public static let cz = EEGLocation(rawValue: "Cz")
+    public static let cz = EEGLocation(rawValue: "Cz") // swiftlint:disable:this identifier_name
     /// C2
     public static let c2 = EEGLocation(rawValue: "C2") // swiftlint:disable:this identifier_name
     /// C4
@@ -138,7 +138,7 @@ public struct EEGLocation {
     /// TP10
     public static let tp10 = EEGLocation(rawValue: "TP10")
     /// P9
-    public static let p9 = EEGLocation(rawValue: "P9")
+    public static let p9 = EEGLocation(rawValue: "P9") // swiftlint:disable:this identifier_name
 
     /// P7
     public static let p7 = EEGLocation(rawValue: "P7") // swiftlint:disable:this identifier_name
@@ -157,7 +157,7 @@ public struct EEGLocation {
     /// P6
     public static let p6 = EEGLocation(rawValue: "P6") // swiftlint:disable:this identifier_name
     /// P8
-    public static let p8 = EEGLocation(rawValue: "P8") // swiftlint:disable:this identifier_name
+    public static let p8 = EEGLocation(rawValue: "P8")
     /// P10
     public static let p10 = EEGLocation(rawValue: "P10")
 
@@ -182,7 +182,7 @@ public struct EEGLocation {
     /// Iz
     public static let iz = EEGLocation(rawValue: "Iz") // swiftlint:disable:this identifier_name
 
-    public let rawValue: String
+    let rawValue: String
 
     init(rawValue: String) {
         self.rawValue = rawValue
@@ -198,4 +198,3 @@ public struct EEGLocation {
 }
 
 extension EEGLocation: Hashable, Sendable {}
-
