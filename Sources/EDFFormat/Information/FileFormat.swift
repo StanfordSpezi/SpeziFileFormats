@@ -23,7 +23,7 @@ public enum FileFormat {
 }
 
 
-extension FileFormat: Sendable {}
+extension FileFormat: Hashable, Sendable {}
 
 
 extension FileFormat: ByteEncodable {

@@ -197,3 +197,5 @@ public struct EEGLocation {
     }
 }
 
+extension EEGLocation: Hashable, Sendable {}
+

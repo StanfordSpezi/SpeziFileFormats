@@ -16,3 +16,6 @@ public enum EDFRecordsFormat {
     /// Custom value for the reserved field.
     case custom(_ string: String = "")
 }
+
+
+extension EDFRecordsFormat: Hashable, Sendable {}

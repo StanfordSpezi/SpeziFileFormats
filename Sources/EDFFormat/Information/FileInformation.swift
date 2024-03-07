@@ -32,7 +32,7 @@ public struct FileInformation {
 }
 
 
-extension FileInformation: Sendable {}
+extension FileInformation: Hashable, Sendable {}
 
 
 extension FileInformation {

@@ -25,6 +25,9 @@ enum FileRecordsFormat {
 }
 
 
+extension FileRecordsFormat: Hashable, Sendable {}
+
+
 extension FileRecordsFormat {
     init(from format: EDFRecordsFormat) {
         switch format {
