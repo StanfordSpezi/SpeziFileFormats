@@ -8,177 +8,192 @@
 
 
 /// The location of an EEG electrode.
-public enum EEGLocation: String {
+public struct EEGLocation {
     /// Pg1
-    case pg1 = "Pg1"
+    public static let pg1 = EEGLocation(rawValue: "Pg1")
     /// Nz
-    case nz = "Nz" // swiftlint:disable:this identifier_name
+    public static let nz = EEGLocation(rawValue: "Nz") // swiftlint:disable:this identifier_name
     /// Pg2
-    case pg2 = "Pg2"
+    public static let pg2 = EEGLocation(rawValue: "Pg2")
 
     /// Fp1
-    case fp1 = "Fp1"
+    public static let fp1 = EEGLocation(rawValue: "Fp1")
     /// Fpz
-    case fpz = "Fpz"
+    public static let fpz = EEGLocation(rawValue: "Fpz")
     /// Fp2
-    case fp2 = "Fp2"
+    public static let fp2 = EEGLocation(rawValue: "Fp2")
 
     /// AF7
-    case af7 = "AF7"
+    public static let af7 = EEGLocation(rawValue: "AF7")
     /// AF3
-    case af3 = "AF3"
+    public static let af3 = EEGLocation(rawValue: "AF3")
     /// AFz
-    case afz = "AFz"
+    public static let afz = EEGLocation(rawValue: "AFz")
     /// AF4
-    case af4 = "AF4"
+    public static let af4 = EEGLocation(rawValue: "AF4")
     /// AF8
-    case af8 = "AF8"
+    public static let af8 = EEGLocation(rawValue: "AF8")
     /// F9
-    case f9 = "F9" // swiftlint:disable:this identifier_name
+    public static let f9 = EEGLocation(rawValue: "F9") // swiftlint:disable:this identifier_name
     /// F7
-    case f7 = "F7" // swiftlint:disable:this identifier_name
+    public static let f7 = EEGLocation(rawValue: "F7") // swiftlint:disable:this identifier_name
     /// F5
-    case f5 = "F5" // swiftlint:disable:this identifier_name
+    public static let f5 = EEGLocation(rawValue: "F5") // swiftlint:disable:this identifier_name
     /// F3
-    case f3 = "F3" // swiftlint:disable:this identifier_name
+    public static let f3 = EEGLocation(rawValue: "F3") // swiftlint:disable:this identifier_name
     /// F1
-    case f1 = "F1" // swiftlint:disable:this identifier_name
+    public static let f1 = EEGLocation(rawValue: "F1") // swiftlint:disable:this identifier_name
     /// Fz
-    case fz = "Fz" // swiftlint:disable:this identifier_name
+    public static let fz = EEGLocation(rawValue: "Fz") // swiftlint:disable:this identifier_name
     /// F2
-    case f2 = "F2" // swiftlint:disable:this identifier_name
+    public static let f2 = EEGLocation(rawValue: "F2") // swiftlint:disable:this identifier_name
     /// F4
-    case f4 = "F4" // swiftlint:disable:this identifier_name
+    public static let f4 = EEGLocation(rawValue: "F4") // swiftlint:disable:this identifier_name
     /// F6
-    case f6 = "F6" // swiftlint:disable:this identifier_name
+    public static let f6 = EEGLocation(rawValue: "F6") // swiftlint:disable:this identifier_name
     /// F8
-    case f8 = "F8" // swiftlint:disable:this identifier_name
+    public static let f8 = EEGLocation(rawValue: "F8") // swiftlint:disable:this identifier_name
     /// F10
-    case f10 = "F10"
+    public static let f10 = EEGLocation(rawValue: "F10")
 
     /// FT9
-    case ft9 = "FT9"
+    public static let ft9 = EEGLocation(rawValue: "FT9")
     /// FT7
-    case ft7 = "FT7"
+    public static let ft7 = EEGLocation(rawValue: "FT7")
     /// FC5
-    case fc5 = "FC5"
+    public static let fc5 = EEGLocation(rawValue: "FC5")
     /// FC3
-    case fc3 = "FC3"
+    public static let fc3 = EEGLocation(rawValue: "FC3")
     /// FC1
-    case fc1 = "FC1"
+    public static let fc1 = EEGLocation(rawValue: "FC1")
     /// FCz
-    case fcz = "FCz"
+    public static let fcz = EEGLocation(rawValue: "FCz")
     /// FC2
-    case fc2 = "FC2"
+    public static let fc2 = EEGLocation(rawValue: "FC2")
     /// FC4
-    case fc4 = "FC4"
+    public static let fc4 = EEGLocation(rawValue: "FC4")
     /// FC6
-    case fc6 = "FC6"
+    public static let fc6 = EEGLocation(rawValue: "FC6")
     /// FT8
-    case ft8 = "FT8"
+    public static let ft8 = EEGLocation(rawValue: "FT8")
     /// FT10
-    case ft10 = "FT10"
+    public static let ft10 = EEGLocation(rawValue: "FT10")
     /// A1
-    case a1 = "A1" // swiftlint:disable:this identifier_name
+    public static let a1 = EEGLocation(rawValue: "A1") // swiftlint:disable:this identifier_name
 
     /// T9
-    case t9 = "T9" // swiftlint:disable:this identifier_name
+    public static let t9 = EEGLocation(rawValue: "T9")
     /// T7
-    case t7 = "T7" // swiftlint:disable:this identifier_name
+    public static let t7 = EEGLocation(rawValue: "T7")
     /// C5
-    case c5 = "C5" // swiftlint:disable:this identifier_name
+    public static let c5 = EEGLocation(rawValue: "C5")
     /// C3
-    case c3 = "C3" // swiftlint:disable:this identifier_name
+    public static let c3 = EEGLocation(rawValue: "C3")
     /// C1
-    case c1 = "C1" // swiftlint:disable:this identifier_name
+    public static let c1 = EEGLocation(rawValue: "C1")
     /// Cz
-    case cz = "Cz" // swiftlint:disable:this identifier_name
+    public static let cz = EEGLocation(rawValue: "Cz")
     /// C2
-    case c2 = "C2" // swiftlint:disable:this identifier_name
+    public static let c2 = EEGLocation(rawValue: "C2") // swiftlint:disable:this identifier_name
     /// C4
-    case c4 = "C4" // swiftlint:disable:this identifier_name
+    public static let c4 = EEGLocation(rawValue: "C4") // swiftlint:disable:this identifier_name
     /// C6
-    case c6 = "C6" // swiftlint:disable:this identifier_name
+    public static let c6 = EEGLocation(rawValue: "C6") // swiftlint:disable:this identifier_name
     /// T8
-    case t8 = "T8" // swiftlint:disable:this identifier_name
+    public static let t8 = EEGLocation(rawValue: "T8") // swiftlint:disable:this identifier_name
     /// T10
-    case t10 = "T10"
+    public static let t10 = EEGLocation(rawValue: "T10")
     /// A2
-    case a2 = "A2" // swiftlint:disable:this identifier_name
+    public static let a2 = EEGLocation(rawValue: "A2") // swiftlint:disable:this identifier_name
 
     /// T3
-    case t3 = "T3" // swiftlint:disable:this identifier_name
+    public static let t3 = EEGLocation(rawValue: "T3") // swiftlint:disable:this identifier_name
     /// T4
-    case t4 = "T4" // swiftlint:disable:this identifier_name
+    public static let t4 = EEGLocation(rawValue: "T4") // swiftlint:disable:this identifier_name
     /// T5
-    case t5 = "T5" // swiftlint:disable:this identifier_name
+    public static let t5 = EEGLocation(rawValue: "T5") // swiftlint:disable:this identifier_name
     /// T6
-    case t6 = "T6" // swiftlint:disable:this identifier_name
+    public static let t6 = EEGLocation(rawValue: "T6") // swiftlint:disable:this identifier_name
 
     /// TP9
-    case tp9 = "TP9"
+    public static let tp9 = EEGLocation(rawValue: "TP9")
     /// TP7
-    case tp7 = "TP7"
+    public static let tp7 = EEGLocation(rawValue: "TP7")
     /// CP5
-    case cp5 = "CP5"
+    public static let cp5 = EEGLocation(rawValue: "CP5")
     /// CP3
-    case cp3 = "CP3"
+    public static let cp3 = EEGLocation(rawValue: "CP3")
     /// CP1
-    case cp1 = "CP1"
+    public static let cp1 = EEGLocation(rawValue: "CP1")
     /// CPz
-    case cpz = "CPz"
+    public static let cpz = EEGLocation(rawValue: "CPz")
     /// CP2
-    case cp2 = "CP2"
+    public static let cp2 = EEGLocation(rawValue: "CP2")
     /// CP4
-    case cp4 = "CP4"
+    public static let cp4 = EEGLocation(rawValue: "CP4")
     /// CP6
-    case cp6 = "CP6"
+    public static let cp6 = EEGLocation(rawValue: "CP6")
     /// TP8
-    case tp8 = "TP8"
+    public static let tp8 = EEGLocation(rawValue: "TP8")
     /// TP10
-    case tp10 = "TP10"
+    public static let tp10 = EEGLocation(rawValue: "TP10")
     /// P9
-    case p9 = "P9" // swiftlint:disable:this identifier_name
+    public static let p9 = EEGLocation(rawValue: "P9")
 
     /// P7
-    case p7 = "P7" // swiftlint:disable:this identifier_name
+    public static let p7 = EEGLocation(rawValue: "P7") // swiftlint:disable:this identifier_name
     /// P5
-    case p5 = "P5" // swiftlint:disable:this identifier_name
+    public static let p5 = EEGLocation(rawValue: "P5") // swiftlint:disable:this identifier_name
     /// P3
-    case p3 = "P3" // swiftlint:disable:this identifier_name
+    public static let p3 = EEGLocation(rawValue: "P3") // swiftlint:disable:this identifier_name
     /// P1
-    case p1 = "P1" // swiftlint:disable:this identifier_name
+    public static let p1 = EEGLocation(rawValue: "P1") // swiftlint:disable:this identifier_name
     /// Pz
-    case pz = "Pz" // swiftlint:disable:this identifier_name
+    public static let pz = EEGLocation(rawValue: "Pz") // swiftlint:disable:this identifier_name
     /// P2
-    case p2 = "P2" // swiftlint:disable:this identifier_name
+    public static let p2 = EEGLocation(rawValue: "P2") // swiftlint:disable:this identifier_name
     /// P4
-    case p4 = "P4" // swiftlint:disable:this identifier_name
+    public static let p4 = EEGLocation(rawValue: "P4") // swiftlint:disable:this identifier_name
     /// P6
-    case p6 = "P6" // swiftlint:disable:this identifier_name
+    public static let p6 = EEGLocation(rawValue: "P6") // swiftlint:disable:this identifier_name
     /// P8
-    case p8 = "P8"
+    public static let p8 = EEGLocation(rawValue: "P8") // swiftlint:disable:this identifier_name
     /// P10
-    case p10 = "P10"
+    public static let p10 = EEGLocation(rawValue: "P10")
 
     /// PO7
-    case po7 = "PO7"
+    public static let po7 = EEGLocation(rawValue: "PO7")
     /// PO3
-    case po3 = "PO3"
+    public static let po3 = EEGLocation(rawValue: "PO3")
     /// POz
-    case poz = "POz"
+    public static let poz = EEGLocation(rawValue: "POz")
     /// PO4
-    case po4 = "PO4"
+    public static let po4 = EEGLocation(rawValue: "PO4")
     /// PO8
-    case po8 = "PO8"
+    public static let po8 = EEGLocation(rawValue: "PO8")
 
     /// O1
-    case o1 = "O1" // swiftlint:disable:this identifier_name
+    public static let o1 = EEGLocation(rawValue: "O1") // swiftlint:disable:this identifier_name
     /// Oz
-    case oz = "Oz" // swiftlint:disable:this identifier_name
+    public static let oz = EEGLocation(rawValue: "Oz") // swiftlint:disable:this identifier_name
     /// O2
-    case o2 = "O2" // swiftlint:disable:this identifier_name
+    public static let o2 = EEGLocation(rawValue: "O2") // swiftlint:disable:this identifier_name
 
     /// Iz
-    case iz = "Iz" // swiftlint:disable:this identifier_name
+    public static let iz = EEGLocation(rawValue: "Iz") // swiftlint:disable:this identifier_name
+
+    public let rawValue: String
+
+    init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+
+    /// Create a custom EEG location.
+    /// - Parameter location: The location string
+    /// - Returns: The EEG location instance.
+    public static func custom(_ location: String) -> EEGLocation {
+        EEGLocation(rawValue: location)
+    }
 }
+
