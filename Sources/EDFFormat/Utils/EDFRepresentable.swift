@@ -14,7 +14,8 @@ protocol EDFRepresentable {
 
 extension String: EDFRepresentable {
     var edfString: String {
-        replacing(" ", with: "_")
+        let result = replacing(" ", with: "_")
+        return result.isEmpty ? "X" : result
     }
 }
 
