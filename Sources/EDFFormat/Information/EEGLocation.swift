@@ -8,7 +8,18 @@
 
 
 /// The location of an EEG electrode.
-public struct EEGLocation {
+public struct EEGLocation: CaseIterable {
+    public static let allCases: [EEGLocation] = [
+        .pg1, .nz, .pg2, .fp1, .fpz, .fp2, .af7, .af3, .afz, .af4, .af8,
+        .f9, .f7, .f5, .f3, .f1, .fz, .f2, .f4, .f6, .f8, .f10, .ft9,
+        .ft7, .fc5, .fc3, .fc1, .fcz, .fc2, .fc4, .fc6, .ft8, .ft10, .a1,
+        .t9, .t7, .c5, .c3, .c1, .cz, .c2, .c4, .c6, .t8, .t10, .a2,
+        .t3, .t4, .t5, .t6, .tp9, .tp7, .cp5, .cp3, .cp1, .cpz, .cp2,
+        .cp4, .cp6, .tp8, .tp10, .p9, .p7, .p5, .p3, .p1, .pz, .p2,
+        .p4, .p6, .p8, .p10, .po7, .po3, .poz, .po4, .po8, .o1, .oz,
+        .o2, .iz
+    ]
+
     /// Pg1
     public static let pg1 = EEGLocation(rawValue: "Pg1")
     /// Nz
