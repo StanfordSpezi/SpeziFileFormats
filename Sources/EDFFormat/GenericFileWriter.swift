@@ -119,7 +119,7 @@ public final class GenericFileWriter<S: Sample> {
     /// The file format.
     public let format: FileFormat
     /// File information
-    public let fileInformation: FileInformation
+    public var fileInformation: FileInformation
     /// The format of the file records (e.g., `EDF+C`).
     private let dataFormat: String
     /// Array of signal descriptions.
@@ -165,6 +165,23 @@ public final class GenericFileWriter<S: Sample> {
         for signal in signals {
             try signal.verifyAsciiInputs()
         }
+    }
+
+    /// Update the file information of the file.
+    ///
+    /// This updates the ``FileInformation`` of a file to modify it after instantiation (e.g., update the record duration or recording start date).
+    ///
+    /// - Important: If you already called ``writeHeader()`` make sure to re-write the header after a call to this method to ensure
+    ///     that the updated information is persisted on disk as well.
+    ///
+    /// - Parameter fileInformation: The updated ``FileInformation``.
+    public func updateFileInformation(_ fileInformation: FileInformation) {
+        lock.lock()
+        defer {
+            lock.unlock()
+        }
+
+        self.fileInformation = fileInformation
     }
 
 
