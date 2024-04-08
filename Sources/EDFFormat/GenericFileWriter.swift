@@ -329,7 +329,12 @@ extension GenericFileWriter {
         byteBuffer.writeEDFAscii(dataFormat, length: 44)
 
         byteBuffer.writeEDFAscii(dataRecordsCount, length: 8)
-        byteBuffer.writeEDFAscii(fileInformation.recordDuration, length: 8)
+        switch fileInformation._recordDuration {
+        case let .integer(value):
+            byteBuffer.writeEDFAscii(value, length: 8)
+        case let .decimal(value):
+            byteBuffer.writeEDFAsciiTrimming(value, length: 8)
+        }
 
         byteBuffer.writeEDFAscii(channelCount, length: 4)
         signals.encode(to: &byteBuffer, preferredEndianness: .little)
