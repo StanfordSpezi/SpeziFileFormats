@@ -64,3 +64,5 @@ jobs:
     uses: StanfordBDHG/.github/.github/workflows/create-and-upload-coverage-report.yml@v2
     with:
       coveragereports: SpeziFileFormats-iOS.xcresult SpeziFileFormats-watchOS.xcresult SpeziFileFormats-visionOS.xcresult SpeziFileFormats-tvOS.xcresult SpeziFileFormats-macOS.xcresult
+    secrets:
+      token: ${{ secrets.CODECOV_TOKEN }}
