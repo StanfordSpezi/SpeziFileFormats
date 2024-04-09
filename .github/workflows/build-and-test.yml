@@ -61,7 +61,7 @@ jobs:
   uploadcoveragereport:
     name: Upload Coverage Report
     needs: [ios, watchos, visionos, tvos, macos]
-    uses: StanfordBDHG/.github/.github/workflows/create-and-upload-coverage-report.yml@v2
+    uses: StanfordBDHG/.github/.github/workflows/create-and-upload-coverage-report.yml@fix/codecov-v4
     with:
       coveragereports: SpeziFileFormats-iOS.xcresult SpeziFileFormats-watchOS.xcresult SpeziFileFormats-visionOS.xcresult SpeziFileFormats-tvOS.xcresult SpeziFileFormats-macOS.xcresult
     secrets:
