@@ -30,7 +30,8 @@ let package = Package(
         .target(
             name: "EDFFormat",
             dependencies: [
-                .product(name: "ByteCoding", package: "SpeziNetworking")
+                .product(name: "ByteCoding", package: "SpeziNetworking"),
+                .product(name: "SpeziNumerics", package: "SpeziNetworking")
             ]
         ),
         .testTarget(
