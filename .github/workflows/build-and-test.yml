@@ -20,14 +20,14 @@ jobs:
     name: Build and Test Swift Package iOS
     uses: StanfordSpezi/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
-      scheme: SpeziFileFormats-Package
+      scheme: SpeziFileFormats
       resultBundle: SpeziFileFormats-iOS.xcresult
       artifactname: SpeziFileFormats-iOS.xcresult
   watchos:
     name: Build and Test Swift Package watchOS
     uses: StanfordSpezi/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
-      scheme: SpeziFileFormats-Package
+      scheme: SpeziFileFormats
       destination: 'platform=watchOS Simulator,name=Apple Watch Series 9 (45mm)'
       resultBundle: SpeziFileFormats-watchOS.xcresult
       artifactname: SpeziFileFormats-watchOS.xcresult
@@ -35,7 +35,7 @@ jobs:
     name: Build and Test Swift Package visionOS
     uses: StanfordSpezi/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
-      scheme: SpeziFileFormats-Package
+      scheme: SpeziFileFormats
       destination: 'platform=visionOS Simulator,name=Apple Vision Pro'
       resultBundle: SpeziFileFormats-visionOS.xcresult
       artifactname: SpeziFileFormats-visionOS.xcresult
@@ -44,7 +44,7 @@ jobs:
     uses: StanfordSpezi/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
       runsonlabels: '["macOS", "self-hosted"]'
-      scheme: SpeziFileFormats-Package
+      scheme: SpeziFileFormats
       resultBundle: SpeziFileFormats-tvOS.xcresult
       destination: 'platform=tvOS Simulator,name=Apple TV 4K (3rd generation)'
       artifactname: SpeziFileFormats-tvOS.xcresult
@@ -54,7 +54,7 @@ jobs:
     with:
       runsonlabels: '["macOS", "self-hosted"]'
       xcodeversion: latest
-      scheme: SpeziFileFormats-Package
+      scheme: SpeziFileFormats
       resultBundle: SpeziFileFormats-macOS.xcresult
       destination: 'platform=macOS,arch=arm64'
       artifactname: SpeziFileFormats-macOS.xcresult

@@ -21,44 +21,23 @@ let package = Package(
         .tvOS(.v16)
     ],
     products: [
-        .library(name: "ByteCoding", targets: ["ByteCoding"]),
-        .library(name: "EDFFormat", targets: ["EDFFormat"]),
-        .library(name: "XCTByteCoding", targets: ["XCTByteCoding"])
+        .library(name: "EDFFormat", targets: ["EDFFormat"])
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-nio.git", from: "2.59.0")
+        .package(url: "https://github.com/StanfordSpezi/SpeziNetworking.git", from: "1.0.0")
     ],
     targets: [
         .target(
-            name: "ByteCoding",
-            dependencies: [
-                .product(name: "NIO", package: "swift-nio"),
-                .product(name: "NIOFoundationCompat", package: "swift-nio")
-            ]
-        ),
-        .target(
             name: "EDFFormat",
             dependencies: [
-                .target(name: "ByteCoding")
-            ]
-        ),
-        .target(
-            name: "XCTByteCoding",
-            dependencies: [
-                .target(name: "ByteCoding")
-            ]
-        ),
-        .testTarget(
-            name: "ByteCodingTests",
-            dependencies: [
-                .target(name: "ByteCoding"),
-                .target(name: "XCTByteCoding")
+                .product(name: "ByteCoding", package: "SpeziNetworking"),
+                .product(name: "SpeziNumerics", package: "SpeziNetworking")
             ]
         ),
         .testTarget(
             name: "EDFFormatTests",
             dependencies: [
-                .target(name: "ByteCoding"),
+                .product(name: "ByteCoding", package: "SpeziNetworking"),
                 .target(name: "EDFFormat")
             ]
         )
