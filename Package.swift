@@ -24,7 +24,7 @@ let package = Package(
         .library(name: "EDFFormat", targets: ["EDFFormat"])
     ],
     dependencies: [
-        .package(url: "https://github.com/StanfordSpezi/SpeziNetworking.git", from: "1.0.0")
+        .package(url: "https://github.com/StanfordSpezi/SpeziNetworking.git", from: "2.0.0")
     ],
     targets: [
         .target(
