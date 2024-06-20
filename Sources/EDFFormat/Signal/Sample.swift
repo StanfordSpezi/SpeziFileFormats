@@ -59,28 +59,28 @@ extension EDFSample: Hashable, Sample {}
 
 
 extension BDFSample: ByteCodable {
-    public init?(from byteBuffer: inout ByteBuffer, preferredEndianness endianness: Endianness) {
-        guard let value = byteBuffer.readInt24(endianness: endianness) else {
+    public init?(from byteBuffer: inout ByteBuffer) {
+        guard let value = byteBuffer.readInt24(endianness: .little) else {
             return nil
         }
         self.init(value)
     }
 
-    public func encode(to byteBuffer: inout ByteBuffer, preferredEndianness endianness: Endianness) {
-        byteBuffer.writeInt24(value, endianness: endianness)
+    public func encode(to byteBuffer: inout ByteBuffer) {
+        byteBuffer.writeInt24(value, endianness: .little)
     }
 }
 
 
 extension EDFSample: ByteCodable {
-    public init?(from byteBuffer: inout ByteBuffer, preferredEndianness endianness: Endianness) {
-        guard let value = Int16(from: &byteBuffer, preferredEndianness: endianness) else {
+    public init?(from byteBuffer: inout ByteBuffer) {
+        guard let value = Int16(from: &byteBuffer, endianness: .little) else {
             return nil
         }
         self.init(value)
     }
 
-    public func encode(to byteBuffer: inout ByteBuffer, preferredEndianness endianness: Endianness) {
-        value.encode(to: &byteBuffer, preferredEndianness: endianness)
+    public func encode(to byteBuffer: inout ByteBuffer) {
+        value.encode(to: &byteBuffer, endianness: .little)
     }
 }
