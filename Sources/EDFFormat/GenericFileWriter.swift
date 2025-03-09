@@ -307,18 +307,21 @@ extension GenericFileWriter: @unchecked Sendable {}
 extension GenericFileWriter {
     private static var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
+        formatter.locale = .init(identifier: "en_US")
         formatter.dateFormat = "dd.MM.yy"
         return formatter
     }
 
     private static var yyDateFormatter: DateFormatter {
         let formatter = DateFormatter()
+        formatter.locale = .init(identifier: "en_US")
         formatter.dateFormat = "dd.MM."
         return formatter
     }
 
     private static var timeFormatter: DateFormatter {
         let formatter = DateFormatter()
+        formatter.locale = .init(identifier: "en_US")
         formatter.dateFormat = "HH.mm.ss"
         return formatter
     }
