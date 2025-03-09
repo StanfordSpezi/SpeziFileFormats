@@ -386,10 +386,10 @@ extension GenericFileWriter where S == BDFSample {
     ///   - information: The file information.
     ///   - signals: The array of signal descriptions.
     /// - Throws: Throws if FileHandle creation fails.
-    public convenience init( // swiftlint:disable:this function_default_parameter_at_end
+    public convenience init(
         url: URL,
         type: FileFormat = .bdf,
-        format: RecordingFormat? = nil,
+        format: RecordingFormat? = nil, // swiftlint:disable:this function_default_parameter_at_end
         information: FileInformation,
         signals: [Signal]
     ) throws {
